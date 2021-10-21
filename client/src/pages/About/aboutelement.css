@@ -1,0 +1,791 @@
+/* * {
+    margin: 20% 0 0 0;
+    padding: 0;
+} */
+.grid {
+  padding-top: 2%;
+  background: blueviolet;
+  /* background:#000d1a; */
+  /* background: rgba(6, 51, 51, 0.83); */
+    /* background: rgb(123, 158, 158); */
+}
+
+#title{
+  color:lightblue;
+  text-transform: capitalize;
+    text-align: center;
+    padding-bottom: 2%;
+   /* bottom: 50%; 
+  padding-top:50%;  */
+  font-size: 4.5em;
+
+}
+
+#hexGrid {
+  display: flex;
+  flex-wrap: wrap;
+  width: 90%;
+  margin: 0 auto ;
+  overflow: hidden;
+  font-family: sans-serif;
+  list-style-type: none;
+}
+
+.hex {
+  position: relative;
+  visibility:hidden;
+  outline:1px solid transparent; /* fix for jagged edges in FF on hover transition */
+  transition: all 0.5s;
+  backface-visibility: hidden;
+  will-change: transform;
+  transition: all 0.5s;
+}
+.hex::after{
+  content:'';
+  display:block;
+  padding-bottom: 86.602%;  /* =  100 / tan(60) * 1.5 */
+}
+.hexIn{
+  position: absolute;
+  color:#000d1a;
+  width:96%;
+  padding-bottom: 110.851%; /* =  width / sin(60) */
+  margin: 2%;
+  overflow: hidden;
+  visibility: hidden;
+  outline:1px solid transparent; /* fix for jagged edges in FF on hover transition */
+  -webkit-transform: rotate3d(0,0,1,-60deg) skewY(30deg);
+      -ms-transform: rotate3d(0,0,1,-60deg) skewY(30deg);
+          transform: rotate3d(0,0,1,-60deg) skewY(30deg);
+    transition: all 0.5s;
+}
+.hexIn * {
+  position: absolute;
+  visibility: visible;
+  outline:1px solid transparent; /* fix for jagged edges in FF on hover transition */
+}
+.hexLink {
+    display:block;
+    width: 100%;
+    height: 100%;
+    text-align: center;
+    color: #000;
+    overflow: hidden;
+    -webkit-transform: skewY(-30deg) rotate3d(0,0,1,60deg);
+        -ms-transform: skewY(-30deg) rotate3d(0,0,1,60deg);
+            transform: skewY(-30deg) rotate3d(0,0,1,60deg);
+}
+
+
+
+
+/*** HEX CONTENT **********************************************************************/
+.hex img {
+  left: -100%;
+  right: -100%;
+  width: auto;
+  height: 100%;
+  margin: 0 auto;
+}
+
+.hex h1, .hex p {
+  width: 100%;
+  padding: 5%;
+  box-sizing:border-box;
+  font-weight: 300;
+  opacity: 0;
+}
+
+#demo1 {
+  color:#fff;
+  text-transform: capitalize;
+  text-align: center;
+  bottom: 50%;
+  padding-top:50%;
+  font-size: 1.5em;
+  font-weight: bold;
+  z-index: 1;
+}
+.hex h1:before, .hex h1:after {
+  display: inline-block;
+  margin: 0 0.5em;
+  width: 0.25em;
+  height: 0.03em;
+  background: #000;
+  content: '';
+  vertical-align: middle;
+  transition: all 0.3s;
+  text-align:center;
+}
+
+#demo2 {
+top: 50%;
+text-align: center;
+text-transform: uppercase;
+    
+}
+
+.img {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background-position: center center;
+  background-size: cover;
+  overflow: hidden;
+-webkit-clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
+clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
+}
+
+.img:before, .img:after {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  content: '';
+  opacity: 0;
+  transition: opacity 0.5s;
+}
+.img:before {
+  background: rgba(21, 24, 26, 0.788)
+}
+.img:after {
+  background: linear-gradient(to top, transparent, rgba(73, 71, 71, 0.795), transparent);
+}
+
+/*** HOVER EFFECT  **********************************************************************/
+
+
+
+.hexLink:hover h1, .hexLink:focus h1,
+.hexLink:hover p, .hexLink:focus p{
+opacity:1;
+transition: 0.8s;
+color:antiquewhite;
+font-weight: bold;
+
+}
+
+
+.hexIn:hover .img:before,
+.hexIn:hover .img:after,
+.hexIn:hover .hexLink {
+  opacity: 1;
+}
+
+
+/*** HEXAGON SIZING AND EVEN ROW INDENTATION *****************************************************************/
+@media (min-width:1201px) { /* <- 5-4  hexagons per row */
+   /* #title{
+     padding-bottom: 10%;
+   } */
+  #hexGrid{
+    padding-bottom: 4.4%;
+    height: 400px;
+  }
+  .hex {
+    width: 20%; /* = 100 / 5 */
+  }
+  .hex:nth-child(9n+6){ /* first hexagon of even rows */
+    margin-left:10%;  /* = width of .hex / 2  to indent even rows */
+  }
+}
+
+@media (max-width: 1200px) and (min-width:901px) { /* <- 4-3  hexagons per row */
+  #hexGrid{
+    padding-bottom: 5.5%;
+    font-size: 13px;
+   
+  }
+  .hex {
+    width: 25%; /* = 100 / 4 */
+  }
+  .hex:nth-child(7n+5){ /* first hexagon of even rows */
+    margin-left:12.5%;  /* = width of .hex / 2  to indent even rows */
+  }
+}
+
+@media (max-width: 900px) and (min-width:601px) { /* <- 3-2  hexagons per row */
+  #hexGrid{
+    padding-bottom: 7.4%;
+    font-size: 14px;
+    
+  }
+  .hex {
+    width: 33.333%; /* = 100 / 3 */
+  }
+  .hex:nth-child(5n+4){ /* first hexagon of even rows */
+    margin-left:16.666%;  /* = width of .hex / 2  to indent even rows */
+  }
+}
+
+@media (max-width: 600px) { /* <- 2-1  hexagons per row */
+  #hexGrid{
+    padding-bottom: 11.2%;
+    font-size: 12px;
+    
+  }
+  .hex {
+    width: 50%; /* = 100 / 3 */
+  }
+  .hex:nth-child(3n+3){ /* first hexagon of even rows */
+    margin-left:25%;  /* = width of .hex / 2  to indent even rows */
+  }
+}
+
+@media (max-width: 400px) {
+    #hexGrid {
+        font-size: 8px;
+       
+    }
+  
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* import { React, useState } from 'react';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faArrowAltCircleRight, faBookmark, faShare } from '@fortawesome/free-solid-svg-icons';
+import pht from "../../photos/bgbedroom.jpg";
+import "./Serviceselements"
+import "../Services/Serviceselement.css"
+import "../../../node_modules/swiper/swiper-bundle.css"
+import Swiper from 'react-id-swiper';
+
+
+
+const SliderConfigs ={ 
+    containerClass:"swiper-container serv-content",
+    parallax:true,
+    centeredSlides:true,
+    speed:500,
+    spaceBetween:0,
+    effect:'slide'
+};
+
+const Services = (id=Services) => {
+    const[parallaxSwiper, setParallaxSwiper]= useState(null);
+    const parallaxAmount = parallaxSwiper ? parallaxSwiper.width * 0.95 :0;
+    
+
+    return(
+     <Swiper {...SliderConfigs} getSwiper={setParallaxSwiper}>
+        
+
+        <div className="servsection">
+            <div className="side-indicator">
+                <div className="servline"></div>
+                <div className="index one"> <p>1</p></div>
+                <div className="index two"> <p>2</p></div>
+                <div className="index three"> <p>3</p></div>
+                <div className="index four"> <p>4</p></div>
+                <div className="index five"> <p>5</p></div>
+
+            </div>
+                
+                <div className="serv-content"  >
+                <div className="text-serv-wrapper">
+                    <div className="text-serv">
+                        <div id = "title-serv">
+                         
+                            <h4>DECORE</h4>
+                            <h4>FURNITURE</h4>
+                            <h4>LIGHTING</h4>
+                            <h4>ROOMS</h4>
+                            <h4>MODERN DESIGN</h4>
+                        </div>
+                        <div id ="description">
+                          <p>
+                                Lorem ipsum is a name for a common type of placeholder text.
+                                 Also known as filler or dummy text, this is simply copy that 
+                                 serves to fill a space without actually saying anything meaningful. 
+                                 ... Lorem ipsum dolor sit amet,consectetur adipiscing elit, 
+                                 sed do eiusmod tempor incididunt ut labore et dolore magna aliqua
+                          </p>
+                            <p>
+                                Lorem ipsum is a name for a common type of placeholder text.
+                                Also known as filler or dummy text, this is simply copy that
+                                serves to fill a space without actually saying anything meaningful.
+                                ... Lorem ipsum dolor sit amet,consectetur adipiscing elit,
+                                sed do eiusmod tempor incididunt ut labore et dolore magna aliqua
+                          </p>
+                            <p>
+                                Lorem ipsum is a name for a common type of placeholder text.
+                                Also known as filler or dummy text, this is simply copy that
+                                serves to fill a space without actually saying anything meaningful.
+                                ... Lorem ipsum dolor sit amet,consectetur adipiscing elit,
+                                sed do eiusmod tempor incididunt ut labore et dolore magna aliqua
+                          </p>
+                            <p>
+                                Lorem ipsum is a name for a common type of placeholder text.
+                                Also known as filler or dummy text, this is simply copy that
+                                serves to fill a space without actually saying anything meaningful.
+                                ... Lorem ipsum dolor sit amet,consectetur adipiscing elit,
+                                sed do eiusmod tempor incididunt ut labore et dolore magna aliqua
+                          </p>
+                            <p>
+                                Lorem ipsum is a name for a common type of placeholder text.
+                                Also known as filler or dummy text, this is simply copy that
+                                serves to fill a space without actually saying anything meaningful.
+                                ... Lorem ipsum dolor sit amet,consectetur adipiscing elit,
+                                sed do eiusmod tempor incididunt ut labore et dolore magna aliqua
+                          </p>
+                          
+
+                        </div>
+                        <div className="btn-serv">
+                            <p>Portfolio </p>
+                            <FontAwesomeIcon icon={faArrowAltCircleRight}/>
+                            
+                        </div>
+                    </div>
+                </div>
+
+                    <div className="glide" data-swiper-parallax={parallaxAmount}>
+                   <div className="glide_cover">
+
+                   </div>
+                    <div className="glide_track" >
+                       <ul className="glide_slides">
+                           <li className="glide_slide">
+                                <div className="slide-one">
+                                    <div className ="slider-image">
+                                        <img src = {pht} alt="sersslider1"/>
+                                        <div className="bookmark">
+                                               < FontAwesomeIcon icon={faBookmark}/>
+                                        </div>
+                                        <div className="share">
+                                                <FontAwesomeIcon icon={faShare}/>
+                                        </div>
+                                    </div>
+                               </div>
+                           </li>
+                            <li className="glide_slide">
+                                <div className="slide two">
+                                    <div className="slider-image">
+                                            <img src={pht} alt="sersslider2" />
+                                        <div className="bookmark">
+                                            < FontAwesomeIcon icon={faBookmark} />
+                                        </div>
+                                        <div className="share">
+                                            <FontAwesomeIcon icon={faShare} />
+                                        </div>
+                                    </div>
+                                </div>
+                            </li>
+                            <li className="glide_slide">
+                                <div className="slide three">
+                                    <div className="slider-image">
+                                            <img src={pht} alt="sersslider3" />
+                                        <div className="bookmark">
+                                            < FontAwesomeIcon icon={faBookmark} />
+                                        </div>
+                                        <div className="share">
+                                            <FontAwesomeIcon icon={faShare} />
+                                        </div>
+                                </div>
+                                </div>
+                            </li>
+                            <li className="glide_slide">
+                                <div className="slide four">
+                                    <div className="slider-image">
+                                            <img src={pht} alt="sersslider4" />
+                                        <div className="bookmark">
+                                            < FontAwesomeIcon icon={faBookmark} />
+                                        </div>
+                                        <div className="share">
+                                            <FontAwesomeIcon icon={faShare} />
+                                        </div>
+                                </div>
+                                </div>
+                            </li>
+                            <li className="glide_slide">
+                                <div className="slide five">
+                                    <div className="slider-image">
+                                            <img src={pht} alt="sersslider" />
+                                        <div className="bookmark">
+                                            < FontAwesomeIcon icon={faBookmark} />
+                                        </div>
+                                        <div className="share">
+                                            <FontAwesomeIcon icon={faShare} />
+                                        </div>
+                                </div>
+                                </div>
+                            </li>
+
+                       </ul>
+
+                   </div>
+                    {/* <div data-swiper-parallax={parallaxAmount} className="controls">
+                       <div data-glide-dir="<" id ="prev">
+                           <i class ="fa fa-arrow-left"></i>
+                       </div>
+                       <div data-glide-dir =">" id="next" >
+                           <i class="fa fa-arrow-right"></i>
+                       </div>
+
+                   </div> 
+               </div>
+            </div>
+            <div className="background"></div>
+             
+        </div>
+        
+      
+    </Swiper>
+    )
+}
+
+export default Services
+ */
+
+
+/* jspart */
+
+/* import Glide from 'react-glidejs';
+import 'react-glidejs/dist/index.css';
+
+document.addEventListener("DomContentLoader",() => {
+
+new Glide(".glide",{
+    type:"carousel",
+    startAt: 0,
+    animationTimingFunc: "ease-in-out",
+    gap:100,
+    perView:3
+
+}).mount();
+
+
+}); */
+
+
+
+
+/* Service Part */
+/* 
+.background{
+  position:absolute;
+  width:100%;
+  height:100%;
+  top:0;
+  background-color: rebeccapurple;
+  z-index:-1;
+}
+
+.background img{
+  height: 100%;
+  width:100%;
+}
+
+.side-indicator{
+  height:70%;
+  top:15%;
+  left:0%;
+  width:350px;
+  display:flex;
+  flex-direction: column;
+  align-items: center;
+  position:absolute;
+  justify-content: space-evenly;
+}
+
+.servline{
+  position:absolute;
+  width:1px;
+  height:100%;
+  background-color: #afbad3;
+  opacity:0.3;
+}
+.index{
+  height: 100px;
+  width:100px;
+  border-radius: 50%;
+  background-color: #afbad3;
+  /* display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: height 0.7s ease,width 0.7s ease;
+}
+
+.index p{
+  opacity:0;
+  color:#fff;
+  font-size: 10px;
+  font-weight: bold;
+  z-index:9;
+}
+
+.active {
+  height: 30px;
+  width:30px;
+}
+
+.active p{
+  opacity:1;
+  font-size: 16px;
+}
+
+.serv-content{
+  position:absolute;
+  top:0;
+  height:100%;
+  width:100%;
+  display:flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.text-serv-wrapper{
+  width:60%;
+}
+.text-serv{
+  padding-left:300px;
+  padding-right: 100px;
+}
+
+#title-serv{
+  overflow:hidden;
+  height:150px;
+  display:flex;
+  flex-direction:column;
+  justify-content: flex-start;
+  margin-bottom:20px;
+  background-color: red;
+}
+.text h4{
+  font-family:"Oswald";
+  font-size: 120px;
+  color:#fff;
+  position:relative;
+}
+
+#description{
+  overflow: hidden;
+  height:55px;
+  display:flex;
+  flex-direction:column;
+  justify-content: flex-start;
+  background-color: black;
+}
+
+#description p{
+  color:#fff;
+  font-size: 12px;
+  max-height: 55px;
+  opacity:0.8;
+  position:relative;
+}
+
+.btn-serv{
+  width:150px;
+  /* change 
+  background-color: #61dafb; 
+  display:flex;
+  align-items: center;
+  padding:10px 10px;
+  border-radius:8px;
+  margin-top:60px;
+  justify-content: space-evenly;
+  cursor:pointer;
+}
+
+.btn-serv p{
+  color:#fff;
+  font-size: 18px;
+}
+
+.btn-serv i{
+  color:#fff
+}
+
+
+
+
+/* ServiceSlider 
+
+
+
+
+
+
+.glide{
+  width:40%;
+}
+
+.glide_cover{
+  position: absolute;
+  width:100%;
+  height:100%;
+  background-color: transparent;
+  z-index: 1;
+  cursor: default;
+}
+
+.slide {
+  height:500px;
+  width:250px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin-right: 40px;
+  flex-shrink: 0;
+}
+
+.slider-image{
+  height:300px;
+  border-radius:10px;
+  overflow: hidden;
+  position: relative;
+  transition: all 0.5s;
+}
+
+.glide__slide--active .slider-image{
+  height: 400px;  
+}
+.slider-image img{
+   width:100%;
+   height:100%;
+   object-fit: cover;
+}
+
+.slide p{
+  color:#fff;
+  font-size: 14px;
+}
+
+.bookmark {
+  position: absolute;
+  right: 10px;
+  top:20px;
+  width:40px;
+  height:40px;
+  border-radius: 50%;
+  background-color: #fff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color:grey;
+}
+
+.share{
+    position: absolute;
+  left: 10px;
+  top:20px;
+  width:40px;
+  height:40px;
+  border-radius: 50%;
+  background-color: #fff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color:grey;
+
+
+
+}
+
+.controls{
+  width:80px;
+  display:flex;
+  justify-content: space-between;
+  position: relative;
+  top: 50px;
+}
+
+.controls div{
+  height:30px;
+  width:30px;
+  border-radius: 50%;
+  background-color: #fff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  opacity: 0.7;
+  transition: all 0.5s;
+}
+
+.controls i {
+  color: gray;
+  font-size: 12px;
+  cursor:pointer;
+} */
+
+/* @media only screen and (max-width :1200px){
+  .side-indicator{
+    width: 120px;
+  }
+  .content{
+   flex-direction: column;
+  }
+
+  .text-wrapper{
+    width: 100%;
+  }
+  .glide{
+    width: 100%;
+    padding-left: 120px;
+    padding-right: 40px;
+  }
+
+  .text{
+    padding-left: 120px;
+  }
+  .text h4{
+    transform :scale(0.8);
+    transform-origin: left;
+  }
+  .btn{
+    width: 120px;
+  }
+  .btn p{
+    font-size: 14px;
+  }
+  .slider-image{
+    height: 220px;
+  }
+  .slide p{
+    font-size: 12px;
+  }
+}
+ */
