@@ -1,6 +1,7 @@
 import React from 'react';
 import { MDBCol, MDBContainer, MDBRow, MDBFooter } from "mdbreact";
 import iglogo from "../../assets/igad.jpg"
+import { Link } from "react-router-dom";
 import './footer.css';
 
 const Footer = () => {
@@ -17,21 +18,21 @@ const Footer = () => {
                                 </h6>
                             </MDBCol>
                             <MDBCol md="6" lg="7" className="text-center text-md-right">
-                                <a className="fb-ic ml-0">
+                                <Link to="/" className="fb-ic ml-0">
                                     <i className="fab fa-facebook-f white-text mr-lg-4"> </i>
-                                </a>
-                                <a className="tw-ic">
+                                </Link>
+                                <Link to="/" className="tw-ic">
                                     <i className="fab fa-twitter white-text mr-lg-4"> </i>
-                                </a>
-                                <a className="gplus-ic">
+                                </Link>
+                                <Link to="/" className="gplus-ic">
                                     <i className="fab fa-google-plus-g white-text mr-lg-4"> </i>
-                                </a>
-                                <a className="li-ic">
+                                </Link>
+                                <Link to="/" className="li-ic">
                                     <i className="fab fa-linkedin-in white-text mr-lg-4"> </i>
-                                </a>
-                                <a className="ins-ic">
+                                </Link>
+                                <Link to="/" className="ins-ic">
                                     <i className="fab fa-instagram white-text mr-lg-4"> </i>
-                                </a>
+                                </Link>
                             </MDBCol>
                         </MDBRow>
                     </MDBContainer>
@@ -56,16 +57,16 @@ const Footer = () => {
                             </h6>
                             <hr className="deep-purple accent-2 mb-4 mt-0 d-inline-block mx-auto" style={{ width: "60px" }} />
                             <p>
-                                <a href="#!">OurWork</a>
+                                <Link  to="/https://ipocomcorpo.web.app">OurWork</Link>
                             </p>
                             <p>
-                                <a href="#!">OurStory</a>
+                                <Link  to="/https://ipocomcorpo.web.app">OurStory</Link>
                             </p>
                             <p>
-                                <a href="#!">Partners</a>
+                                <Link  to="/https://ipocomcorpo.web.app">Partners</Link>
                             </p>
                             <p>
-                                <a href="#!">Staff</a>
+                                <Link  to="/https://ipocomcorpo.web.app">Staff</Link>
                             </p>
                         </MDBCol>
                         <MDBCol md="3" lg="2" xl="2" className="mb-4">
@@ -74,16 +75,16 @@ const Footer = () => {
                             </h6>
                             <hr className="deep-purple accent-2 mb-4 mt-0 d-inline-block mx-auto" style={{ width: "60px" }} />
                             <p>
-                                <a href="#!">Become an Advocate</a>
+                                <Link  to="/https://ipocomcorpo.web.app">Become an Advocate</Link>
                             </p>
                             <p>
-                                <a href="#!">Become an Affiliate</a>
+                                <Link  to="/https://ipocomcorpo.web.app">Become an Affiliate</Link>
                             </p>
                             <p>
-                                <a href="#!">Work With Us</a>
+                                <Link  to="/https://ipocomcorpo.web.app">Work With Us</Link>
                             </p>
                             <p>
-                                <a href="#!">Help</a>
+                                <Link  to="/https://ipocomcorpo.web.app">Help</Link>
                             </p>
                         </MDBCol>
                         <MDBCol md="4" lg="3" xl="3" className="mb-4">
@@ -108,7 +109,7 @@ const Footer = () => {
                 </MDBContainer>
                 <div className="footer-copyright text-center py-3" style={{ backgroundColor: "rgba(6,51,51,0.83)" }}>
                     <MDBContainer fluid>
-                        &copy; {new Date().getFullYear()} Poweredby: <a href="https://ipocomcorpo.web.app"> IPOCompCorp </a>
+                        &copy; {new Date().getFullYear()} Poweredby: <Link to="/https://ipocomcorpo.web.app"> IPOCompCorp </Link>
                     </MDBContainer>
                 </div>
             </MDBFooter>
@@ -118,11 +119,3 @@ const Footer = () => {
 
 
 export default Footer
-
-
-
-
-
-
-
-
