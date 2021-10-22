@@ -10,9 +10,6 @@ on:
   pull_request:
     branches: [ master ]
     
-defaults:
-    run:
-       working-directory: client
 
 jobs:
   build:
@@ -36,7 +33,7 @@ jobs:
       uses: actions/upload-artifact@v2
       with:
         name: build
-        path: client/build
+        path: build
     
     
   deploy:
@@ -50,7 +47,7 @@ jobs:
           uses: actions/download-artifact@v2
           with:
             name: build
-            path: client/build
+            path: build
         - name: Deploy to Firebase
           uses: w9jds/firebase-action@master
           with:
